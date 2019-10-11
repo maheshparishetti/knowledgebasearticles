@@ -1,0 +1,366 @@
+
+<p-dialog header="Add" [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '550px', minWidth: '200px'}" [minY]="70"
+        [maximizable]="true" [baseZIndex]="10000">
+        <form [formGroup]="AddForm" class="container" (ngSubmit)="OnAddArticleSave(AddForm.value)">
+          <h4>Add Article</h4>
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-6 col-sm-4 col-md-6">
+                <label><b>Article Name</b></label>
+                <input formControlName="articleName" type="text" class="form-control">
+                <label class="alert alert-danger" *ngIf="AddForm.get('articleName').hasError('required') && !AddForm.get('articleName').pristine" >articleName is required.</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-6 col-sm-4 col-md-6">
+                <label><b>Content</b></label>
+                <input formControlName="content" type="text" class="form-control">
+                <label class="alert alert-danger" *ngIf="AddForm.get('content').hasError('required') && !AddForm.get('content').pristine" >Content is required.</label>
+
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-6 col-sm-4 col-md-6">
+                <label><b>CreatedBy</b></label>
+                <input formControlName="createdBy" type="text" class="form-control">
+                <label class="alert alert-danger" *ngIf="AddForm.get('createdBy').hasError('required') && !AddForm.get('createdBy').pristine" >Createdby is required.</label>
+
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-6 col-sm-4 col-md-6">
+                <label><b>Category name</b></label>
+                <select formControlName="categoryId" class="form-control">
+                  <option>Choose your category</option>
+                  <option *ngFor="let item of cat" [value]="item.categoryId">{{item.categoryName}}
+                  </option>
+                </select>
+                <!-- <ul>
+                  <li *ngFor="let v of [1,2,3,4,5,6] | slice:2:-1">
+                    {{v}}
+                  </li>
+                </ul> -->
+              </div>
+            </div>
+          </div>
+          <br>
+          <!-- <div class="container">
+            <div class="row">
+              <div class="col-xs-6 col-sm-4 col-md-6">
+                <button class="btn btn-primary" [disabled]="!AddForm.valid" type="submit">Submit</button>&nbsp;
+                <button type="button" class="btn btn-outline-dark">Close</button>
+
+              </div>
+            </div>
+          </div><br> -->
+          <br>
+
+        <p-footer>
+            <button type="submit" pButton icon="pi pi-check"  label="Yes"></button>
+            <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No" class="ui-button-secondary"></button>
+        </p-footer>
+      </form>
+</p-dialog>
+<!-- Edit context menu -->
+
+<p-dialog header="Edit" [(visible)]="display1" [modal]="true" [responsive]="true" [style]="{width: '550px', minWidth: '200px'}" [minY]="70"
+        [maximizable]="true" [baseZIndex]="10000">
+        <form [formGroup]="AddForm" class="container" (ngSubmit)="UpdateArticles(AddForm.value)">
+
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-6 col-sm-4 col-md-6">
+                  <label><b>Article Name</b></label>
+                  <input formControlName="articleName" type="text" class="form-control">
+                  <label class="alert alert-danger" *ngIf="AddForm.get('articleName').hasError('required') && !AddForm.get('articleName').pristine" >articleName is required.</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-6 col-sm-4 col-md-6">
+                  <label><b>Content</b></label>
+                  <input formControlName="content" type="text" class="form-control">
+                  <label class="alert alert-danger" *ngIf="AddForm.get('content').hasError('required') && !AddForm.get('content').pristine" >Content is required.</label>
+
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-6 col-sm-4 col-md-6">
+                  <label><b>CreatedBy</b></label>
+                  <input formControlName="createdBy" type="text" class="form-control">
+                  <label class="alert alert-danger" *ngIf="AddForm.get('createdBy').hasError('required') && !AddForm.get('createdBy').pristine" >Createdby is required.</label>
+
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-6 col-sm-4 col-md-6">
+                  <label><b>Category name</b></label>
+                  <select formControlName="categoryId" class="form-control">
+                    <option>Choose your category</option>
+                    <option *ngFor="let item of cat" [value]="item.categoryId">{{item.categoryName}}
+                    </option>
+                  </select>
+                  <!-- <ul>
+                    <li *ngFor="let v of [1,2,3,4,5,6] | slice:2:-1">
+                      {{v}}
+                    </li>
+                  </ul> -->
+                </div>
+              </div>
+            </div>
+            <br>
+            <!-- <div class="container">
+              <div class="row">
+                <div class="col-xs-6 col-sm-4 col-md-6">
+                  <button class="btn btn-primary" [disabled]="!AddForm.valid" type="submit">Submit</button>&nbsp;
+                  <button type="button" class="btn btn-outline-dark">Close</button>
+
+                </div>
+              </div>
+            </div><br> -->
+            <br>
+          </form>
+          <p-footer>
+              <button type="submit" pButton icon="pi pi-check"  label="Yes"></button>
+              <button type="button" pButton icon="pi pi-close" (click)="display1=false" label="No"></button>
+          </p-footer>
+  </p-dialog>
+
+
+
+<p-contextMenu [global]='true' [model]='menuItem'>
+  </p-contextMenu>
+
+<div class="container">
+  <!-- <img [src]="imageUrl | default:'<default-image-url>'"/> -->
+    <div class="form-group form-inline">
+     <input #f class="form-control ml-2" type="text"/>&nbsp;
+
+        <button type="submit" class="btn btn-info" (click)="onSearch(f.value)">Search</button>
+
+<!-- </div> -->
+</div>
+  <button style="margin-top: 10px;margin-left: 10px" class="btn btn-primary float-left mb-5" (click)="open(Addpopup)">Add Articles</button>&nbsp;&nbsp;
+<!-- <div class="col-6 col-md-12">
+    <table class="table table-hover"> -->
+        <div class="table-responsive ">
+            <table class="table table-hover">
+
+        <thead>
+          <tr>
+            <th scope="col">Index</th>
+            <th scope="col">article Name</th>
+            <th scope="col">Created Date</th>
+            <!-- <th scope="col">Created By</th> -->
+            <th scope="col">categoryName</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of all_arr;let i=index;">
+            <th scope="row">{{i+1}}</th>
+            <td>{{item.articleName }}</td>
+            <td>{{item.createdDate}}</td>
+            <!-- <td>{{item.createdBy}}</td> -->
+            <td>{{item.categoryName}}</td>
+            <td>
+
+              <button class="button btn-primary" (click)="openEditPopup(Edit,i)">Edit</button>&nbsp;
+              <!-- <button class="button btn-danger" (click)="onDelete(item)">Delete</button> -->
+              <button class="button btn-danger" (click)="openReadMore(readmore,item)">ReadMore</button>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    <!-- <ngb-pagination *ngIf="ngVariable"  class="d-flex justify-content-center" [collectionSize]="totalItem" [maxSize]='5'  [rotate]="true" [(page)]="Page" [pageSize]="totalPages"  (pageChange)="showPage([Page])"></ngb-pagination> -->
+    <ngb-pagination   [collectionSize]="totalItem" [(page)]="Page"  [maxSize]="5" [rotate]="true" [boundaryLinks]="true"  (pageChange)="showPage([Page])"> </ngb-pagination>
+
+    <pre>Current page: {{Page}}</pre>
+
+  </div>
+  </div>
+
+
+
+<ng-template #Addpopup let-modal>
+  <br>
+
+  <form [formGroup]="AddForm" class="container" (ngSubmit)="OnAddArticleSave(AddForm.value)">
+    <h4>Add Article</h4>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-sm-4 col-md-6">
+          <label><b>Article Name</b></label>
+          <input formControlName="articleName" type="text" class="form-control">
+          <label class="alert alert-danger" *ngIf="AddForm.get('articleName').hasError('required') && !AddForm.get('articleName').pristine" >articleName is required.</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-sm-4 col-md-6">
+          <label><b>Content</b></label>
+          <input formControlName="content" type="text" class="form-control">
+          <label class="alert alert-danger" *ngIf="AddForm.get('content').hasError('required') && !AddForm.get('content').pristine" >Content is required.</label>
+
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-sm-4 col-md-6">
+          <label><b>CreatedBy</b></label>
+          <input formControlName="createdBy" type="text" class="form-control">
+          <label class="alert alert-danger" *ngIf="AddForm.get('createdBy').hasError('required') && !AddForm.get('createdBy').pristine" >Createdby is required.</label>
+
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-sm-4 col-md-6">
+          <label><b>Category name</b></label>
+          <select formControlName="categoryId" class="form-control">
+            <option>Choose your category</option>
+            <option *ngFor="let item of cat" [value]="item.categoryId">{{item.categoryName}}
+            </option>
+          </select>
+          <!-- <ul>
+            <li *ngFor="let v of [1,2,3,4,5,6] | slice:2:-1">
+              {{v}}
+            </li>
+          </ul> -->
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-sm-4 col-md-6">
+          <button class="btn btn-primary" [disabled]="!AddForm.valid" type="submit">Submit</button>&nbsp;
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+
+        </div>
+      </div>
+    </div><br>
+    <br>
+  </form>
+</ng-template>
+
+
+
+<!-- edit popup -->
+
+<ng-template #Edit let-modal>
+  <br>
+  <form [formGroup]="AddForm" class="container" (ngSubmit)="UpdateArticles(AddForm.value)">
+    <h4>Edit Article</h4>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-sm-4 col-md-6">
+          <label><b>Article Name</b></label>
+          <input formControlName="articleName" type="text" class="form-control">
+          <label class="alert alert-danger" *ngIf="AddForm.get('articleName').hasError('required') && !AddForm.get('articleName').pristine" >articleName is required.</label>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-sm-4 col-md-6">
+          <label><b>Content</b></label>
+          <input formControlName="content" type="text" class="form-control">
+          <label class="alert alert-danger" *ngIf="AddForm.get('content').hasError('required') && !AddForm.get('content').pristine" >content is required.</label>
+
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-sm-4 col-md-6">
+          <label><b>CreatedBy</b></label>
+          <input formControlName="createdBy" type="text" class="form-control">
+          <label class="alert alert-danger" *ngIf="AddForm.get('createdBy').hasError('required') && !AddForm.get('createdBy').pristine" >Createdby is required.</label>
+
+        </div>
+      </div>
+    </div>
+    <div class="container">
+        <div class="row">
+          <div class="col-xs-6 col-sm-4 col-md-6">
+            <label><b>Category Name</b></label>
+            <select formControlName="categoryId" class="form-control">
+              <option>Choose your category</option>
+              <option *ngFor="let item of cat" [value]="item.categoryId">{{item.categoryName}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    <br>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-sm-4 col-md-6">
+          <button class="btn btn-primary" [disabled]="!AddForm.valid" type="submit">Submit</button>&nbsp;
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+
+        </div>
+      </div>
+    </div><br>
+    <br>
+  </form>
+</ng-template>
+
+
+<ng-template #readmore let-model>
+
+  <div class="card text-center">
+    <div class="card-header">
+      {{Readmore?.articleName}}
+    </div>
+    <div class="card-header">
+        {{Readmore?.content}}
+      </div>
+      <div class="card-header">
+          {{Readmore?.createdBy}}
+        </div>
+        <div class="card-header">
+            {{Readmore?.categoryName}}
+          </div>
+    <div class="card-body">
+      <h5 class="card-title" [innerHTML]='Readmore?.content'></h5>
+      <p class="card-text"></p>
+      <a class="btn btn-primary"(click)="readMoreClose()">Close</a>
+    </div>
+
+  </div>
+</ng-template>
+
+
+
+
+
+
+
+
+
+
+
+
+

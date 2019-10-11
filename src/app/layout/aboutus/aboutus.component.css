@@ -1,0 +1,25 @@
+
+.h1, h1 {
+  font-size: 2.5rem;
+  text-align: -webkit-center;
+}
+img.img-responsive {
+  height: 180px;
+  padding-left: 26px;
+}
+
+p {
+  padding-left: 15px;
+}
+/* img.img-responsive1 {
+  margin-left: 35px;
+  margin-right: 680px;
+  height: 300px;
+  width :500px;
+}
+img.img-responsive2 {
+  margin-left: 35px;
+  margin-right: px;
+  height: 300px;
+  width :500px;
+} */

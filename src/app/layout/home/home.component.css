@@ -1,0 +1,43 @@
+.container {
+  margin-top: 65px;
+}
+button.button.btn-info {
+  float: right;
+  padding: 13px;
+  align-items: unset;
+  width: -25px;
+  align-content: center;
+ }
+
+ .form-group.form-inline {
+  margin-top: -43px;
+}
+.btn-danger {
+  color: #fff;
+  background-color: #17a2b8;
+  border-color: #28a745;
+}
+info:not(:disabled):not(.disabled):active, .show>.btn-info.dropdown-toggle {
+  color: #fff;
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #ffc107;
+  border-color: #007bff;
+}
+.btn-info {
+  color: #fff;
+  background-color: #343a40;
+  border-color: #ffc107;
+}
+body .ui-button {
+  margin: 0;
+  color: #ffffff;
+  background-color: #007ad9;
+  border: 1px solid #007ad9;
+  font-size: 14px;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  height: 28px;
+}

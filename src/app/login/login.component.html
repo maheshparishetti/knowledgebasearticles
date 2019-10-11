@@ -1,0 +1,34 @@
+<div  class="container"  >
+  <div class="form-data">
+
+  <form  [formGroup]="Signup" (ngSubmit)="onLoginSubmit()" >
+
+<h1 >Welcome To Login Page</h1>
+<div class="form-group">
+
+        <label for="uname"><b>Username</b></label>&nbsp; &nbsp;
+        <input   class="form-control" type="text"  formControlName="username" placeholder="Enter Username"  >
+
+        <span class="required" *ngIf="Signup.get('username').hasError('required') && Signup.get('username').touched">User Name is
+        Required</span>
+      </div>
+
+      <div class="form-group">
+        <label for="psw"><b>Password</b></label> &nbsp; &nbsp;
+        <input class="form-control"    type="password" formControlName="password" placeholder="Enter Password">
+        <span class="required" *ngIf="Signup.get('password').hasError('required') && Signup.get('password').touched">Password is
+        Required</span>      </div>
+
+
+      <div class="form-group">
+        <button  class="btn btn-primary" type="submit"  >Login</button>&nbsp; &nbsp;
+        <button type="button" class="btn btn-primary"  (click)="onSave1()">Cancel</button>
+
+      </div>
+
+
+
+  </form>
+</div>
+</div>
+

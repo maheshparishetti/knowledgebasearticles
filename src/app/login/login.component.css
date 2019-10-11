@@ -1,0 +1,24 @@
+.form-contol {
+  margin-left: 319px;
+  margin-top: 29px;
+}
+h1.bg-info {
+  align-content: stretch;
+  margin-left: 241px;
+}
+.form-Control {
+  margin-left: 398px;
+}
+.form-data {
+  width: 50%;
+  height: inherit;
+  margin: 20px auto;
+}
+.h1, h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  color: chocolate;
+}
+.required{
+  color: red;
+}

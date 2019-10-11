@@ -1,0 +1,19 @@
+img.img-responsive {
+  margin-left: 654px;
+  border-radius: 245px;
+  border: groove;
+}
+.h3, h3 {
+  font-size: 1.25rem;
+  color: blue;
+}
+a.a1 {
+  color: orangered;
+  font-size: initial;
+  background-color: lightyellow;
+  border-radius: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 2px;
+}
+

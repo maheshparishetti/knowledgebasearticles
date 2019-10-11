@@ -1,0 +1,48 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+  <p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="10000">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link active active-class" routerLink='/addemp' routerLinkActive="router-link-active" ><i class="pi pi-mobile"></i>addemp</a>
+          <!-- <a routerLink='/addemp' class="btn btn-primary" role="button">Add</a> -->
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink='/editemp' routerLinkActive="router-link-active" >edit emp</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Settings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+
+    </p-sidebar>
+
+
+
+    <a class="navbar-brand "  style="right:200px ;" >Employee Details</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <!-- <a class="nav-link" [routerLink]="['/display']" routerLinkActive="router-link-active" >Employee Data <span class="sr-only">(current)</span></a> -->
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/add']" routerLinkActive="router-link-active" >Add Details</a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="#"></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#"></a>
+        </li>
+
+      </ul>
+      <button pButton type="button" (click)="visibleSidebar1 = true" icon="pi pi-arrow-right"></button>
+    </div>
+  </nav>

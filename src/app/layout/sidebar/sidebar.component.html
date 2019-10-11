@@ -1,0 +1,56 @@
+<!-- <nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
+    <div class="list-group">
+        <a routerLink="" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-dashboard"></i>&nbsp;
+            <span>home </span>
+        </a>
+
+        <a [routerLink]="['/gallery']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-file-o"></i>&nbsp;
+            <span>Gallery</span>
+        </a>
+
+        <a [routerLink]="['/Contact Us']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-book"></i>&nbsp;
+            <span>Contact Us</span>
+        </a>
+
+        <div class="header-fields">
+            <a (click)="rltAndLtr()" class="list-group-item">
+                <span><i class="fa fa-arrows-h"></i>&nbsp; RTL/LTR</span>
+            </a>
+
+        </div>
+    </div>
+    <div class="toggle-button" [ngClass]="{collapsed: collapsed}" (click)="toggleCollapsed()">
+        <i class="fa fa-fw fa-angle-double-{{collapsed?'right':'left'}}"></i>&nbsp;
+        <span> Collapse Sidebar</span>
+    </div>
+</nav> -->
+
+
+
+
+
+
+<p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="10000" class="bg-dark">
+  <h5 class="font-weight-bold">Sidebar</h5>
+  <!-- <button pButton type="button" (click)="visibleSidebar1 = false" label="Save" class="ui-button-success"></button>
+    <button pButton type="button" (click)="visibleSidebar1 = false" label="Cancel" class="ui-button-secondary"></button> -->
+  <a [routerLink]="['/home']" [routerLinkActive]="['router-link-active']" (click)="visibleSidebar1=false">
+    <i class="fa fa-fw fa-dashboard"></i>&nbsp;
+    home
+  </a><br><br>
+  <a [routerLink]="['/contactus']" [routerLinkActive]="['router-link-active']">
+    <i class="fa fa-file-o"></i>&nbsp;
+    Contact Us<br><br></a>
+  <a [routerLink]="['/aboutus']" [routerLinkActive]="['router-link-active']" >
+    <i class="fa fa-book"></i>&nbsp;
+    About Us
+  </a><br><br>
+
+</p-sidebar>
+<div class="bg-info">
+  <button pButton type="button" (click)="visibleSidebar1 = true" class="btn btn-info1">Team3 ☰</button>
+
+</div>
