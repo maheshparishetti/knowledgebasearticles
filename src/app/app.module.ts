@@ -28,6 +28,10 @@ import {ButtonModule} from 'primeng/button';
 import { PrimecomponentComponent } from './primecomponent/primecomponent.component';
 import {ToastModule} from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import {DataViewModule} from 'primeng/dataview';
+import {DropdownModule} from 'primeng/dropdown';
+import {PanelModule} from 'primeng/panel';
+import {VirtualScrollerModule} from 'primeng/virtualscroller';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +50,8 @@ import { MessageService } from 'primeng/api';
 
     WelcomeComponent,
     Custom,
-    PrimecomponentComponent
+    PrimecomponentComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -63,7 +68,11 @@ import { MessageService } from 'primeng/api';
     DialogModule,
     ButtonModule,
     TableModule,
-    ToastModule
+    ToastModule,
+    DataViewModule,
+    DropdownModule,
+    PanelModule,
+    VirtualScrollerModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

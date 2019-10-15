@@ -12,7 +12,9 @@ export class Team3Service {
   currentuser;
   isAdmin: boolean;
   redirectURL: string;
-  url1 = "https://cd0c4b97.ngrok.io/api/KB/"
+  url1 = "https://b62766b0.ngrok.io/api/KB/";
+
+
   url = this.url1+"GetArticles?getall=0&categ=";
   add_article: string =this.url1 +"InsertUpdateKBAricles";
   URLfetchDataById =this.url1 + 'GetKBArticlesById?ArticleId=';
@@ -63,6 +65,7 @@ export class Team3Service {
 
   }
   UpdateArticle(item) {
+    console.log(item);
     let body = JSON.stringify(item);
     let head = new HttpHeaders().set('Content-Type', 'application/json');
     return this._http.post(this.URLInsertUpdate, body, { headers: head });

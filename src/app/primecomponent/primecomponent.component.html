@@ -1,12 +1,22 @@
 <p-toast [style]="{marginTop: '80px'}"></p-toast>
+<ng-template pTemplate="caption">
+    List of articles
+</ng-template>
+<p-table [scrollable]="true" scrollHeight="200px"  #dt [columns]="cols" [value]="selectArticles" [paginator]="true" [rows]="10"  [(contextMenuSelection)]="selectedCar" [contextMenu]="cm">
 
-<p-table [columns]="cols" [value]="selectCars" [(contextMenuSelection)]="selectedCar" [contextMenu]="cm">
+  <ng-template pTemplate="caption">
+        <div style="text-align: right">
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+        </div>
+    </ng-template>
     <ng-template pTemplate="header" let-columns>
         <tr>
             <th *ngFor="let col of columns">
                 {{col.header}}
             </th>
         </tr>
+
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns">
         <tr [pContextMenuRow]="rowData">
@@ -15,7 +25,181 @@
             </td>
         </tr>
     </ng-template>
+    <ng-template pTemplate="summary">
+        There are {{selectArticles?.length}} articles
+    </ng-template>
 </p-table>
 
 <p-contextMenu #cm [model]="items"></p-contextMenu>
 
+<p-dataView #dv [value]="selectArticles" [paginator]="true" [rows]="10" paginatorPosition="both" filterBy="articleName"
+    [sortField]="sortField" [sortOrder]="sortOrder" >
+    <p-header>
+        <div class="ui-helper-clearfix">
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-4">
+                    <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" (onChange)="onSortChange($event)" [style]="{'min-width':'140px'}"></p-dropdown>
+                </div>
+                <div class="ui-g-6 ui-md-4 filter-container">
+                    <div style="position:relative">
+                        <input type="search" pInputText placeholder="Search by ArticleName" (keyup)="dv.filter($event.target.value)">
+                    </div>
+                </div>
+                <div class="ui-g-6 ui-md-4" style="text-align:right">
+                    <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                </div>
+            </div>
+        </div>
+    </p-header>
+    <br>
+    <br>
+    <!-- <p-virtualScroller [value]="selectArticles" scrollHeight="500px" [itemSize]="150" [rows]="10"
+        [lazy]="true"> -->
+        <p-virtualScroller [value]="cars" scrollHeight="500px" [itemSize]="150">
+    <ng-template let-selectArticles pTemplate="listItem">
+      <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+          <div class="ui-g-12 ui-md-3" style="text-align:center">
+              <img src="./assets/images.jpg">
+          </div>
+          <div class="ui-g-12 ui-md-8 car-details">
+              <div class="ui-g">
+                  <div class="ui-g-2 ui-sm-6">Article Id: </div>
+                  <div class="ui-g-10 ui-sm-6"><b>{{selectArticles?.articleId}}</b></div>
+
+                  <div class="ui-g-2 ui-sm-6">Article Name: </div>
+                  <div class="ui-g-10 ui-sm-6"><b>{{selectArticles.articleName}}</b></div>
+
+                  <div class="ui-g-2 ui-sm-6">Created By: </div>
+                  <div class="ui-g-10 ui-sm-6"><b>{{selectArticles.createdBy}}</b></div>
+
+                  <div class="ui-g-2 ui-sm-6">Category Name: </div>
+                  <div class="ui-g-10 ui-sm-6"><b>{{selectArticles.categoryName}}</b></div>
+              </div>
+          </div>
+          <div class="ui-g-12 ui-md-1 search-icon">
+              <button pButton type="button" icon="pi pi-search" (click)="selectCar($event, selectArticles)"></button>
+          </div>
+      </div>
+  </ng-template>
+</p-virtualScroller>
+<!-- </p-virtualScroller> -->
+  <ng-template let-selectArticles pTemplate="gridItem">
+    <div style="padding:.5em" class="ui-g-12 ui-md-3">
+        <p-panel [header]="selectArticles.articleId" [style]="{'text-align':'center'}">
+            <img src="./assets/images.jpg" >
+            <div class="car-detail">{{selectArticles.articleId}} - {{selectArticles.articleName}}</div>
+            <hr class="ui-widget-content" style="border-top:0">
+            <button pButton type="button" icon="pi pi-search" (click)="selectCar($event, selectArticles)" style="margin-top:0"></button>
+        </p-panel>
+    </div>
+</ng-template>
+
+</p-dataView>
+<p-dialog  header="Car Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '225px'}"  (onAfterHide)="onDialogHide()">
+  <div class="ui-g" *ngIf="selectedCar">
+      <div class="ui-g-12" style="text-align:center">
+          <img src="./assets/images.jpg">
+      </div>
+      <div class="ui-g-4">Article Id </div>
+      <div class="ui-g-8">{{selectedCar.articleId}}</div>
+
+      <div class="ui-g-4">article Name</div>
+      <div class="ui-g-8">{{selectedCar.articleName}}</div>
+
+      <div class="ui-g-4">Created By </div>
+      <div class="ui-g-8">{{selectedCar.createdBy}}</div>
+
+      <div class="ui-g-4">Category Name: </div>
+      <div class="ui-g-8">{{selectedCar.categoryName}}</div>
+  </div>
+</p-dialog>
+
+<!-- edit pop up -->
+<p-dialog header="Car Details" [(visible)]="display" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '225px'}"  (onAfterHide)="onDialogHide()">
+  <form [formGroup]="addform" class="container" (ngSubmit)="UpdateArticles(addform.value)">
+    <h4>Edit Article</h4>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <label><b>Article Name</b></label>
+          <input formControlName="articleName" type="text" class="form-control">
+          <!-- <label class="alert alert-danger" *ngIf="addform.get('articleName').hasError('required') && !addform.get('articleName').pristine" >articleName is required.</label> -->
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <label><b>Content</b></label>
+          <input formControlName="content" type="text" class="form-control">
+          <!-- <label class="alert alert-danger" *ngIf="addform.get('content').hasError('required') && !addform.get('content').pristine" >content is required.</label> -->
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <label><b>Category Id</b></label>
+          <input formControlName="categoryId" type="text" class="form-control">
+          <!-- <label class="alert alert-danger" *ngIf="addform.get('categotyId').hasError('required') && !addform.get('creacategotyIdtedBy').pristine" >Createdby is required.</label> -->
+
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <p-footer>
+      <button type="submit" pButton   label="submit"></button>&nbsp;&nbsp;
+      <button type="button" pButton  (click)="display=false" label="cancel" class="ui-button-secondary"></button>
+  </p-footer>
+  </form>
+</p-dialog>
+
+<!-- add articles -->
+<p-dialog header="Car Details" [(visible)]="display" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '225px'}"  (onAfterHide)="onDialogHide()">
+  <form [formGroup]="addform" class="container" (ngSubmit)="addArticles(addform.value)">
+    <h4>Add Article</h4>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <label><b>Article Name</b></label>
+          <input formControlName="articleName" type="text" class="form-control">
+          <!-- <label class="alert alert-danger" *ngIf="addform.get('articleName').hasError('required') && !addform.get('articleName').pristine" >articleName is required.</label> -->
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <label><b>Content</b></label>
+          <input formControlName="content" type="text" class="form-control">
+          <!-- <label class="alert alert-danger" *ngIf="addform.get('content').hasError('required') && !addform.get('content').pristine" >content is required.</label> -->
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <label><b>Category Id</b></label>
+          <input formControlName="categoryId" type="text" class="form-control">
+          <!-- <label class="alert alert-danger" *ngIf="addform.get('categotyId').hasError('required') && !addform.get('creacategotyIdtedBy').pristine" >Createdby is required.</label> -->
+
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <p-footer>
+      <button type="submit" pButton   label="submit"></button>&nbsp;&nbsp;
+      <button type="button" pButton  (click)="display=false" label="cancel" class="ui-button-secondary"></button>
+  </p-footer>
+  </form>
+</p-dialog>
