@@ -153,8 +153,8 @@ export class PrimecomponentComponent implements OnInit, OnDestroy {
         // this.selectArticles=this.arr['kbArticles'];
         // console.log(this.selectArticles);
         this.messageService.add({ severity: 'info', summary: 'Updated', detail: item.articleName + ' - ' + item.content });
-        this.display = false;
         this.getAll();
+        this.display = false;
       }
     );
   }

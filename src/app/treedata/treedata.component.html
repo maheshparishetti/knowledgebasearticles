@@ -1,0 +1,119 @@
+
+<br>
+<br>
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<p-contextMenu #cm [model]="items"></p-contextMenu>
+
+<p-treeTable [scrollable]="true" scrollHeight="200px" #tt [value]="files" dataKey="name" [columns]="selectedColumns"
+  [(contextMenuSelection)]="selectedNode" [contextMenu]="cm" [resizableColumns]="true">
+
+  <ng-template pTemplate="caption">
+    <h5>FileSystem</h5>
+  </ng-template>
+  <ng-template pTemplate="caption">
+    <div style="text-align:left">
+      <p-multiSelect [options]="cols" [(ngModel)]="selectedColumns" optionLabel="header"
+        selectedItemsLabel="{0} columns selected" [style]="{minWidth: '200px'}" defaultLabel="Choose Columns">
+      </p-multiSelect>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns" ttResizableColumn [ttSortableColumn]="col.field">
+        {{col.header}}
+        <p-treeTableSortIcon [field]="col.field"></p-treeTableSortIcon>
+      </th>
+    </tr>
+    <tr>
+      <th *ngFor="let col of cols">
+        <input pInputText type="text" (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowNode let-rowData="rowData" let-columns="columns">
+    <tr [ttContextMenuRow]="rowNode">
+
+      <td *ngFor="let col of columns; let i = index"  [ngClass]="{'ui-toggler-column': i === 0}">
+        <p-treeTableToggler [rowNode]="rowNode" *ngIf="i == 0"></p-treeTableToggler>
+        <!-- <p-treeTableCellEditor>
+          <ng-template pTemplate="input">
+            <input pInputText type="text" [(ngModel)]="rowData[col.field]"
+              [ngStyle]="{'width': i == 0 ? '90%': '100%'}">
+          </ng-template> -->
+          {{rowData[col.field]}}
+        <!-- </p-treeTableCellEditor> -->
+        <!-- {{rowData[col.field]}} -->
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="summary">
+    <h4>{{files?.length}} Root Folders</h4>
+  </ng-template>
+</p-treeTable>
+
+
+<p-dialog header="Add Article" [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
+        [maximizable]="true" [baseZIndex]="10000">
+        <form [formGroup]="AddForm" class="container" (ngSubmit)="OnAddArticleSave(AddForm.value)">
+
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <label><b>Name</b></label>
+                <input formControlName="name" type="text" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <label><b>size</b></label>
+                <input formControlName="size" type="text" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <label><b>type</b></label>
+                <input formControlName="type" type="text" class="form-control">
+              </div>
+            </div>
+          </div>
+          <br>
+        <p-footer>
+            <button type="submit" pButton icon="pi pi-check" label="Yes"></button>&nbsp;&nbsp;
+            <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No" class="ui-button-secondary"></button>
+        </p-footer>
+        <br>
+        </form>
+</p-dialog>
+
+
+<!-- <p-toast [style]="{marginTop: '80px'}"></p-toast>
+
+<p-treeTable [value]="selectArticles" [columns]="cols" dataKey="name" [(contextMenuSelection)]="selectedNode" [contextMenu]="cm">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template> -->
+<!-- <ng-template pTemplate="body" let-rowNode let-rowData let-columns="columns">
+        <tr [ttContextMenuRow]="rowNode">
+            <td *ngFor="let col of columns; let i = index">
+                <p-treeTableToggler [rowNode]="rowNode" *ngIf="i == 0"></p-treeTableToggler>
+                {{rowData[col.field]}}
+            </td>
+        </tr>
+    </ng-template> -->
+<!-- <ng-template pTemplate="body" let-rowNode let-rowData let-columns="columns">
+      <tr [ttContextMenuRow]="rowData">
+          <td *ngFor="let col of columns;let i = index">
+              <p-treeTableToggler [rowNode]="rowNode" *ngIf="i == 0"></p-treeTableToggler>
+              {{rowData['node'][col.field]}}
+          </td>
+      </tr>
+    </ng-template>
+</p-treeTable> -->

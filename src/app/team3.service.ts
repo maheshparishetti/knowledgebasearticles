@@ -12,7 +12,7 @@ export class Team3Service {
   currentuser;
   isAdmin: boolean;
   redirectURL: string;
-  url1 = "https://b62766b0.ngrok.io/api/KB/";
+  url1 = "https://7ccbe975.ngrok.io/api/KB/";
 
 
   url = this.url1+"GetArticles?getall=0&categ=";

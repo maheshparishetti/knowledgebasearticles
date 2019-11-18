@@ -1,0 +1,96 @@
+{
+  "data":
+  [
+      {
+          "data":{
+              "id": 1,
+              "name":"Documents",
+              "size":"75kb",
+              "type":"Folder",
+              "parentId": 0
+          },
+          "children":[
+              {
+                  "data":{
+                      "id": 11,
+                      "name":"Work",
+                      "size":"55kb",
+                      "type":"Folder",
+                      "parentId":1
+                  },
+                  "children":[
+                      {
+                          "data":{
+                              "id": 21,
+                              "name":"Expenses.doc",
+                              "size":"30kb",
+                              "type":"Document",
+                              "parentId":11
+                          }
+                      },
+                      {
+                          "data":{
+                              "id": 22,
+                              "name":"Resume.doc",
+                              "size":"25kb",
+                              "type":"Resume",
+                              "parentId":11
+                          }
+                      }
+                  ]
+              },
+              {
+                  "data":{
+                      "id": 12,
+                      "name":"Home",
+                      "size":"20kb",
+                      "type":"Folder",
+                      "parentId":1
+
+                  },
+                  "children":[
+                      {
+                          "data":{
+                              "id": 31,
+                              "name":"Invoices",
+                              "size":"20kb",
+                              "type":"Text",
+                              "parentId":12
+                          }
+                      }
+                  ]
+              }
+          ]
+      },
+      {
+          "data":{
+              "name":"Pictures",
+              "size":"150kb",
+              "type":"Folder"
+          },
+          "children":[
+              {
+                  "data":{
+                      "name":"barcelona.jpg",
+                      "size":"90kb",
+                      "type":"Picture"
+                  }
+              },
+              {
+                  "data":{
+                      "name":"primeui.png",
+                      "size":"30kb",
+                      "type":"Picture"
+                  }
+              },
+              {
+                  "data":{
+                      "name":"optimus.jpg",
+                      "size":"30kb",
+                      "type":"Picture"
+                  }
+              }
+          ]
+      }
+  ]
+}

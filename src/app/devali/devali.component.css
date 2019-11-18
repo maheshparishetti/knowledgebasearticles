@@ -1,0 +1,36 @@
+body {
+  margin:0;
+  text-align:center;
+  background-color:black;
+  color:#6ee82c;
+}
+
+img{
+  max-width:100%;
+}
+
+p{
+  font-size:1.4em;
+  margin:0;
+  padding:5px;
+  font-family: 'Pacifico', sans-serif;
+}
+
+.diwali{
+  font-size:2em;
+}
+
+.crackers{
+  position:absolute;
+  bottom:-120px;
+  left:0;
+  right:0;
+  z-index:-1;
+}
+
+span{
+  font-size:1.5em;
+}
+.imge{
+  background-image: url(https://dl.dropbox.com/s/eiiwsyqk6un2yl3/source.gif);
+}

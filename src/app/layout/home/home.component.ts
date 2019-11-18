@@ -224,7 +224,7 @@ export class HomeComponent implements OnInit {
   }
 
   openEditPopup(Editpopup, item) {
-    console.log(this.AddForm);
+    console.log(item);
     this.AddForm.patchValue({
       articleId: this.all_arr[item].articleId,
       articleName: this.all_arr[item].articleName,
@@ -266,7 +266,7 @@ export class HomeComponent implements OnInit {
 
 
   openReadMore(readmore, item) {
-
+console.log(item);
     this.modalService.open(readmore,
       {
         size: "lg"

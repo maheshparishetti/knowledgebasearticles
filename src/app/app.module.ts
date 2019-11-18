@@ -22,7 +22,7 @@ import { AboutusComponent } from "./layout/aboutus/aboutus.component";
 import { WelcomeComponent } from "./layout/welcome/welcome.component";
 import { Custom } from "./custom.pipe";
 import {TableModule} from 'primeng/table';
-import { ContextMenuModule } from "primeng/contextmenu";
+import { ContextMenuModule } from 'primeng/contextmenu';
 import {DialogModule} from 'primeng/dialog';
 import {ButtonModule} from 'primeng/button';
 import { PrimecomponentComponent } from './primecomponent/primecomponent.component';
@@ -32,6 +32,13 @@ import {DataViewModule} from 'primeng/dataview';
 import {DropdownModule} from 'primeng/dropdown';
 import {PanelModule} from 'primeng/panel';
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
+import { TreedataComponent } from './treedata/treedata.component';
+import {TreeTableModule} from 'primeng/treetable';
+import {MultiSelectModule} from 'primeng/multiselect';
+
+
+import { NodeService } from './node.service';
+import { DevaliComponent } from './devali/devali.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +58,8 @@ import {VirtualScrollerModule} from 'primeng/virtualscroller';
     WelcomeComponent,
     Custom,
     PrimecomponentComponent,
+    TreedataComponent,
+    DevaliComponent,
 
   ],
   imports: [
@@ -71,10 +80,13 @@ import {VirtualScrollerModule} from 'primeng/virtualscroller';
     ToastModule,
     DataViewModule,
     DropdownModule,
+    MultiSelectModule,
+
     PanelModule,
-    VirtualScrollerModule
+    VirtualScrollerModule,
+    TreeTableModule
   ],
-  providers: [MessageService],
+  providers: [MessageService,NodeService],
   bootstrap: [AppComponent]
   // declarations: [NgbdModalBasic],
 })

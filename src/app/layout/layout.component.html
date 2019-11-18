@@ -58,42 +58,55 @@
   <!-- <app-sidebar></app-sidebar> -->
 <!-- </nav> -->
 <!-- </div> -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <app-sidebar></app-sidebar>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<header >
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <app-sidebar></app-sidebar>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
 
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-        <ul class="nav justify-content-end nav-pills">
-        <li class="nav-item active">
-            <a class="nav-link"[routerLink]="['']" routerLinkActive="active" [routerLinkActiveOptions]={exact:true}>Welcome<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link"[routerLink]="['/home']" routerLinkActive="active" [routerLinkActiveOptions]={exact:true}>Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/contactus']" routerLinkActive="active">Contact Us</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/aboutus']" routerLinkActive="active">About Us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/datatable']" routerLinkActive="active">Data Table</a>
-      </li>
-        <li class="nav-item" *ngIf="!isLoggedIn()" routerLinkActive="active"><a class="nav-link"  routerLink="/login">Login</a></li>
-        <li   class="nav-item" *ngIf="isLoggedIn()" routerLinkActive="active"><a class="nav-link" (click)="onLogOut()" >LogOut</a></li>
-        <!-- <li class="nav-item">
-         <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" (click)="onLoginClick()">Login</button> -->
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="nav justify-content-end nav-pills">
+            <li class="nav-item active">
+                <a class="nav-link" [routerLink]="['']" routerLinkActive="active" [routerLinkActiveOptions]={exact:true}>Welcome<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active" [routerLinkActiveOptions]={exact:true}><i class="fa fa-home"></i> Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/contactus']" routerLinkActive="active"><i class="fa fa-phone"></i> Contact Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/aboutus']" routerLinkActive="active">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/datatable']" routerLinkActive="active"><i class="fa fa-table"></i> Data Table</a>
+            </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/treedata']" routerLinkActive="active"><i class="fa fa-tree"></i> Tree Table</a>
+          </li>
+              <li class="nav-item">
+                  <a class="nav-link" routerLink='' routerLink="/deeps"><i class="fa fa-star"></i> deepavali</a>
+                </li>
+            <li class="nav-item" *ngIf="!isLoggedIn()" >
+              <a class="nav-link" routerLinkActive="active"  routerLink="/login"><i class="fa fa-sign-in"></i> Login</a>
+            </li>
+            <li class="nav-item" *ngIf="isLoggedIn()">
+              <a class="nav-link" (click)="onLogOut()" routerLink=''><i class="fa fa-sign-out"></i> LogOut</a>
+            </li>
 
-        <!-- </li> -->
-      </ul>
-      <!-- <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form> -->
-    </div>
-  </nav>
+            <!-- <li class="nav-item">
+             <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" (click)="onLoginClick()">Login</button> -->
+            <!-- </li> -->
+          </ul>
+          <!-- <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form> -->
+        </div>
+      </nav>
+
+</header>
 
 
